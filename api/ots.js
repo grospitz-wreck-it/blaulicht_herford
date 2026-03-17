@@ -1,5 +1,4 @@
 import Parser from "rss-parser";
-import fetch from "node-fetch";
 
 export const config = {
   maxDuration: 10
