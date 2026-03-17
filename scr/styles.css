@@ -1,11 +1,27 @@
-body { margin:0; font-family:system-ui;}
-#map { height:100vh;}
-.controls {
- position:fixed; bottom:12px; left:10px; right:10px;
- display:flex; gap:10px;
+body {
+  margin: 0;
+  font-family: system-ui;
 }
+
+#map {
+  height: 100vh;
+}
+
+.controls {
+  position: fixed;
+  bottom: 12px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
 .controls button {
- flex:1; padding:14px; font-size:20px;
- border-radius:14px; border:none;
- background:white; box-shadow:0 2px 10px rgba(0,0,0,0.2);
+  flex: 1;
+  padding: 14px;
+  font-size: 20px;
+  border-radius: 14px;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
