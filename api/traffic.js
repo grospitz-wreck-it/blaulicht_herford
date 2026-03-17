@@ -1,22 +1,34 @@
-export default async function handler(req,res){
- const query=`
- [out:json];
- area[name="Kreis Herford"]->.a;
- (
-  way["highway"="construction"](area.a);
- );
- out center;
- `;
+export const config = {
+  maxDuration: 10
+};
 
- const data=await fetch("https://overpass-api.de/api/interpreter",{method:"POST",body:query}).then(r=>r.json());
+export default async function handler(req, res) {
+  try {
+    const query = `
+    [out:json];
+    area[name="Kreis Herford"]->.a;
+    (
+      way["highway"="construction"](area.a);
+    );
+    out center;
+    `;
 
- const result=data.elements.map(el=>({
-  type:"construction",
-  title:"Baustelle",
-  lat:el.center.lat,
-  lng:el.center.lon
- }));
+    const data = await fetch("https://overpass-api.de/api/interpreter", {
+      method: "POST",
+      body: query
+    }).then(r => r.json());
 
- res.setHeader("Cache-Control","s-maxage=600");
- res.json(result);
+    const result = data.elements.map(el => ({
+      type: "construction",
+      title: "Baustelle",
+      lat: el.center.lat,
+      lng: el.center.lon
+    }));
+
+    res.setHeader("Cache-Control", "s-maxage=600");
+    res.status(200).json(result);
+
+  } catch {
+    res.status(200).json([]);
+  }
 }
